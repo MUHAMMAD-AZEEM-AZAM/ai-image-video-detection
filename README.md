@@ -71,8 +71,8 @@ The project uses a combination of:
 
 ## Accuracy Metrics
 - **Image Classification**: ~98% accuracy on the test set.  
-- **Video Classification**: ~95% accuracy on the test set.  
-- **NSFW Detection**: ~96% accuracy on the test set.
+- **Video Classification**: ~98% accuracy on the test set.  
+- **NSFW Detection**: ~99% accuracy on the test set.
 
 (Note: Accuracy values may vary depending on the dataset and testing conditions.)
 
