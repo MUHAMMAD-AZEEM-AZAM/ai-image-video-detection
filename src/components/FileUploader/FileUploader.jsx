@@ -140,7 +140,7 @@ function FileUploader({
         />
 
         {preview ? (
-          <img src={preview} height={250} alt={fileName} />
+          <img src={preview} height={250} style={{maxWidth:'480px'}} alt={fileName} />
         ) : (
           <>
             <MdCloudUpload color="#1475cf" size={60} />
