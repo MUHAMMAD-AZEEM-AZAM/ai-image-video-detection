@@ -1,0 +1,30 @@
+:root {
+ /*  add roboto font */
+  --font-family: 'Roboto', sans-serif;
+  --font-size: 16px;
+  --line-height: 1.5;
+  --color: #f9f9f9;
+  --background-color: #1a1a1a;
+}
+
+body{
+  font-family: var(--font-family);
+margin:  0px;
+}
+
+.button{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1475cf;
+  color: white;
+  cursor: pointer;
+  /* other button styles */
+}
+
+.button-disabled {
+  cursor: not-allowed;
+  color: gray;
+  background-color: #b1b8be;
+  /* other disabled styles */
+}
