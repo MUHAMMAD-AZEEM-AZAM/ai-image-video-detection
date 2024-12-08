@@ -84,6 +84,7 @@ import { useState } from 'react';
 import './FileUploader.css';
 import { MdCloudUpload, MdDelete } from 'react-icons/md';
 import { AiFillFileImage } from 'react-icons/ai';
+import ReactPlayer from 'react-player'
 
 function FileUploader({
   file,
@@ -140,7 +141,18 @@ function FileUploader({
         />
 
         {preview ? (
-          <img src={preview} height={250} style={{maxWidth:'480px'}} alt={fileName} />
+          // check if image then image otherwide display video player
+          file.type.startsWith('image/') ? (
+            <img src={preview} height={250} style={{maxWidth:'480px'}} alt={fileName} />
+          ) : (
+            <ReactPlayer  url={preview} 
+            width="100%" // Adjust width and height as needed
+            height="250px" // Height for the video player
+            controls={true}
+            />
+
+          )
+          // <img src={preview} height={250} style={{maxWidth:'480px'}} alt={fileName} />
         ) : (
           <>
             <MdCloudUpload color="#1475cf" size={60} />

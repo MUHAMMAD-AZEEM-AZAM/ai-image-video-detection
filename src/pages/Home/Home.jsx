@@ -19,10 +19,6 @@ const Home = () => {
       alert("No file selected!");
     }
   };
-console.log('-----------------------------------------------------')
-  console.log(response)
-console.log('-----------------------------------------------------')
-
 
   return (
 <div className='main-row'>
@@ -33,15 +29,15 @@ console.log('-----------------------------------------------------')
         fileName={fileName}
         setFileName={setFileName}
       />
-      <div>
+      <div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
+        <div style={{display:'flex', justifyContent:'center'}}>
       <CustomButton onClick={handleProcess} loading={loading} disabled={!file}>
         Process
       </CustomButton>
+        </div>
       {error && <p className='error'>{error.message}</p>}
       {response && <p className='success'>File uploaded successfully!</p>}
       </div>
-      
-      
     </div>
 {statusCode===200 &&<Results response={response}/>}
 </div>

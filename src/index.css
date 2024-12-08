@@ -28,3 +28,7 @@ margin:  0px;
   background-color: #b1b8be;
   /* other disabled styles */
 }
+/* remove scroller from app */
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,37 +1,69 @@
 import React from 'react';
 import styles from './Results.module.css';
 import Table from './Table';
-import { Gauge } from '@mui/x-charts/Gauge';
+import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 const Results = ({ response }) => {
-    const humanPercentage = 50;
-    const aiPercentage = 50;
     console.log("The response is: ", response)
     return (
-        <div>
+        <div style={{height:'64vh'}}>
 
-            {response?.AIvsHuman?.status === 'ai' ? (<div className={styles.guage}>
-                <Gauge width={180} height={180} value={response?.AIvsHuman?.score * 100} title='Ai' />
-
+            {response?.AIvsHuman?.status === 'ai' ? (<div className={`${styles.guage} ${styles.card}`}>
+                <Gauge width={140} height={140} value={Math.floor(response?.AIvsHuman?.score * 10000) / 100} title='Ai'
+                 sx={() => ({
+                    [`& .${gaugeClasses.valueArc}`]: {
+                      fill: '#dc2f02',
+                    },
+                    
+                  })}
+                />
                 <h4>AI Genrated</h4>
 
-            </div>) : (<div className={styles.guage}>
-                <Gauge width={180} height={180} value={response?.AIvsHuman?.score * 100} title='Human' />
+            </div>) : (<div className={`${styles.guage} ${styles.card}`}>
+                <Gauge width={140} height={140} value={Math.floor(response?.AIvsHuman?.score * 10000) / 100} title='Human' />
                 <h4>Made By Human</h4>
             </div>)}
             {/* <Table
                 humanPercentage={humanPercentage}
                 aiPercentage={aiPercentage}
-            /> */}
-            <h4>NSFW Status</h4>
-            <div className={styles.detail} style={{backgroundColor:`${response?.nsfw_status?.status=='Safe'?'#7bf266':'#ffb3c1'}`}}>
-                <p>{response?.nsfw_status?.status}</p>
+      </div>      /> */}
+            <div style={{display:'flex',gap:'10px'}}>
+                <div className={`${styles.guage} ${styles.card}`}>
+                    <h4>NSFW Status</h4>
+                    <Gauge width={140} height={140} value={response?.nsfw_status?.score * 100} title='nsfw' 
+                     sx={(theme) => ({
+                        [`& .${gaugeClasses.valueArc}`]: {
+                          fill: `${response?.nsfw_status?.status ? '#dc2f02' : '#1976d2'}`,
+                        },
+                        
+                      })}
+                    />
+                    <div>
+                    <p>{response?.nsfw_status?.reason}</p>
+                    </div>
+                </div>
+                <div className={`${styles.guage} ${styles.card}`}>
+                    <h4>Quality</h4>
+                    <Gauge width={140} height={140} value={response?.quality_results?.score * 100} title='quality' 
+                     sx={(theme) => ({
+                        [`& .${gaugeClasses.valueArc}`]: {
+                          fill: `${response?.quality_results?.status=="Low" ? '#dc2f02' : '#1976d2'}`,
+                        },
+                        
+                      })}
+                    />
+                    <div>
+                    <p>{response?.quality_results?.status}</p>
+                    </div>
+                </div>
+            </div>
+            {/* <h4>NSFW Status</h4>
+            <div className={styles.detail} style={{ backgroundColor: `${!response?.nsfw_status?.status ? '#7bf266' : '#ffb3c1'}` }}>
                 <p>{response?.nsfw_status?.reason}</p>
             </div>
             <h4>Image Quality</h4>
-            <div className={styles.detail} style={{backgroundColor:`${response?.image_quality_results?.is_low_quality?'#ffb3c1':'#7bf266'}`}}>
-                <p>{response?.image_quality_results?.is_low_quality?'Bad Quality':'Good Quality'}</p>
-                <p>{Math.round(response?.image_quality_results?.results * 100)}% Quality</p>
-            </div>
+            <div className={styles.detail} style={{ backgroundColor: `${response?.quality_results?.status == "Low" ? '#ffb3c1' : '#7bf266'}` }}>
+                <p>{response?.quality_results?.status} Quality</p>
+            </div> */}
         </div>
     );
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <div ></div>
+      <h2>DeepTrace</h2><span>AI Powered Video & Image Analyzer</span>
       <div className={styles['nav-links']}>
         <Link to="/" className={styles['nav-link']}>Home</Link>
         <Link to="/about" className={styles['nav-link']}>About</Link>

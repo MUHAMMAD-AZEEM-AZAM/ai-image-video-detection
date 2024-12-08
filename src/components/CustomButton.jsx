@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CustomButton = ({ loading, disabled, onClick, children }) => {
   return (
-    <button       className={`button ${disabled || loading ? 'button-disabled' : ''}`}
+    <button style={{maxWidth:'140px'}} className={`button ${disabled || loading ? 'button-disabled' : ''}`}
     onClick={onClick} disabled={disabled || loading}>
       {loading ? 'Processing...' : children}
     </button>
